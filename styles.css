@@ -1,1 +1,11 @@
 /*C.1-8*/
+.inspirational {
+  background-color: #df8a8a;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  margin-top: 5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  text-align: center;
+  border-radius: 10px;
+}
