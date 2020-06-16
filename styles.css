@@ -9,3 +9,7 @@
   text-align: center;
   border-radius: 10px;
 }
+.topleftimage {
+  vertical-align: top;
+  float: left
+}
