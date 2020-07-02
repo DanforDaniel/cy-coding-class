@@ -95,6 +95,17 @@
                 <h3></h3>
             </div>
         </div>
+        <!-- C-4.1 -->
+        <!-- Verses -->
+        <div class="display: flex;">
+          <div class="verses-table">
+            <div id="verse-content-1" class="verses-table-cell first-col cell-background">
+              <p id="1-content" style="margin: 0">Verse Content</p> 
+            </div>  
+            <div id="verse-reference-1" class="verses-table-cell second-col cell-background">
+              <p id="1-reference" style="margin: 0">Verse Reference</p>
+            </div> 
+        </div>
     </div>
 </section>
     </div>
@@ -130,10 +141,18 @@
     var numberOfVerses = 0;
 
     function addVerse() {
-        // H.2-2: Increment the number of verses we have on our page don't change the two lines below here
-        numberOfVerses = numberOfVerses + 1;
-        printTheNumberOfVerses();
-        printOddOrEven();
+        $(".verses").append(`
+          <!-- Verses -->
+        <div class="display: flex;">
+          <div class="verses-table">
+            <div id="verse-content-1" class="verses-table-cell first-col cell-background">
+              <p id="1-content" style="margin: 0">Verse Content</p> 
+            </div>  
+            <div id="verse-reference-1" class="verses-table-cell second-col cell-background">
+              <p id="1-reference" style="margin: 0">Verse Reference</p>
+            </div> 
+        </div>`
+        );
     }
 
     function printTheNumberOfVerses() {
