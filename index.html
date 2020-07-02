@@ -141,18 +141,26 @@
     var numberOfVerses = 0;
 
     function addVerse() {
-        $(".verses").append(`
-          <!-- Verses -->
-        <div class="display: flex;">
-          <div class="verses-table">
-            <div id="verse-content-1" class="verses-table-cell first-col cell-background">
-              <p id="1-content" style="margin: 0">Verse Content</p> 
-            </div>  
-            <div id="verse-reference-1" class="verses-table-cell second-col cell-background">
-              <p id="1-reference" style="margin: 0">Verse Reference</p>
-            </div> 
-        </div>`
+      let verseContentText = $("#verse-content-form").val()
+      let verseReferenceText = $("#verse-ref-form").val()
+         $(".verses").append(
+            `<div style="display: flex;">
+                <div class="verses-table">
+                    <div id="verse-content-${numberOfVerses}" class="verses-table-cell first-col cell-background" onclick="toggleVerseContentVisibility(firstElementChild)">
+                        <p id="${numberOfVerses}-content" style="margin: 0">${verseContentText}</p>
+                    </div>
+                    <div id="verse-reference-${numberOfVerses}" class="verses-table-cell second-col cell-background" onclick="toggleVerseReferenceVisibility(firstElementChild)">
+                        <p id="${numberOfVerses}-reference" style="margin: 0">${verseReferenceText}</p>
+                    </div>
+                    <div id="icons-${numberOfVerses}" class="verses-table-cell third-col">
+                        <span id="${numberOfVerses}-show" class="icon fa-eye show" onclick="showVerseContentAndReferenceWhenButtonClicked(id)"></span>
+                        <span id="${numberOfVerses}-hide" class="icon fa-eye-slash hide" onclick="hideVerseContentAndReferenceWhenButtonClicked(id)"></span>
+                    </div>
+                </div>
+            </div>`
         );
+        printTheNumberOfVerses();
+        printOddOrEven();
     }
 
     function printTheNumberOfVerses() {
