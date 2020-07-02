@@ -55,7 +55,7 @@
 <!-- Verses -->
 <section id="verses" class="wrapper" style="background: #f2f2f2;">
     <div class="container">
-       <header class="major">
+        <header class="major">
             <h2>Add a Bible Verse</h2>
         </header>
         <div style="display: flex; flex-flow: row wrap">
@@ -71,15 +71,11 @@
                 <input type="text" id="verse-ref-form" name="verse-ref" placeholder="Colossians 3:2"><br><br>
             </div>
         </div>
-        <!-- H.3 -->
         <div style="text-align: center; margin-bottom: 60px;">
             <input type="submit" value="Submit" onclick="addVerse()">
         </div>
     </div>
     <div id="my-verses" class="container">
-            <!-- C.2-1 -->
-            <!-- <input type="submit" value="Click this button to add a verse!" onclick="addVerse()"> -->
-        </header>
         <!-- Column Headings -->
         <header class="major">
             <h2>My Verses</h2>
@@ -95,41 +91,32 @@
                 <h3></h3>
             </div>
         </div>
+
         <!-- C-4.1 -->
         <!-- Verses -->
-        <div class="display: flex;">
-          <div class="verses-table">
-            <div id="verse-content-1" class="verses-table-cell first-col cell-background">
-              <p id="1-content" style="margin: 0">Verse Content</p> 
-            </div>  
-            <div id="verse-reference-1" class="verses-table-cell second-col cell-background">
-              <p id="1-reference" style="margin: 0">Verse Reference</p>
-            </div> 
+        <div class="verses">
         </div>
-    </div>
-</section>
     </div>
 </section>
 
 <!-- Lower Banner -->
-<!-- C.1-8 -->
-<div class="inspirational">
-    <!-- C.1-6 -->
-    <h2 style="color: whitesmoke">For the word of God is alive and active. Sharper than any double-edged sword, it penetrates even to dividing
-        soul and spirit, joints and marrow; it judges the thoughts and attitudes of the heart. Hebrews 4:12</h2>
+<div class="inspirational-verse">
+    <h5 style="color: whitesmoke">For the word of God is alive and active. Sharper than any double-edged sword, it
+        penetrates even to dividing soul and spirit, joints and marrow; it judges the thoughts and attitudes of the
+        heart.</h5>
+    <p style="color: whitesmoke; margin: 0">Hebrews 4:12</p>
 </div>
 
 <!-- Footer -->
-<!-- C.1-7 -->
 <footer id="footer">
     <ul class="icons">
-        <li><a href="https://www.instagram.com/itsdankim_/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://twitter.com" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="https://facebook.com" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="https://instagram.com" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
     </ul>
     <ul class="menu">
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Terms of Use</a></li>
-        <li><a href="#">Privacy</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#verses">Go Back to Verses</a></li>
     </ul>
     <span class="copyright">&copy; Copyright. All rights reserved. Design by <a href="http://www.html5webtemplates.co.uk">Responsive Web Templates</a></span>
 </footer>
@@ -137,13 +124,17 @@
 </html>
 
 <script>
-     // H.2-1: Create a global variable to hold the number of verses we have on our page
     var numberOfVerses = 0;
 
     function addVerse() {
-      let verseContentText = $("#verse-content-form").val()
-      let verseReferenceText = $("#verse-ref-form").val()
-         $(".verses").append(
+        // C-4.2 Dynamically add verses html
+        numberOfVerses = numberOfVerses + 1;
+        let verseContentText = $("#verse-ref-form").val()
+        let verseReferenceText = $("#verse-content-form").val()
+        // C-4.3 onClick for icons are set up
+        // H-4.1 when clicking on the verse content, the visibility is toggled
+        // H-4.2 when clicking on the verse reference, the visibility is toggled
+        $(".verses").append(
             `<div style="display: flex;">
                 <div class="verses-table">
                     <div id="verse-content-${numberOfVerses}" class="verses-table-cell first-col cell-background" onclick="toggleVerseContentVisibility(firstElementChild)">
@@ -164,16 +155,52 @@
     }
 
     function printTheNumberOfVerses() {
-        // H.2-3: Change log statement should print the total number of verses
         console.log("The number of verses is: " + numberOfVerses)
     }
 
     function printOddOrEven() {
-        // H.2-4: log statement should print "even" or "odd"
         if (numberOfVerses % 2 === 0) {
             console.log("The number of verses is even")
         } else {
             console.log("The number of verses is odd")
         }
     }
+
+    function showVerseContentAndReferenceWhenButtonClicked(showButtonFullId) {
+        let verseNumber = showButtonFullId.split("-show")[0]
+        // C.4-4 change the style instead of just logging
+        // console.log("please show content and reference " + verseNumber)
+        let contentElement = document.getElementById(`${verseNumber}-content`)
+        let referenceElement = document.getElementById(`${verseNumber}-reference`)
+        contentElement.style.visibility = "visible";
+        referenceElement.style.visibility = "visible";
+    }
+
+
+    function hideVerseContentAndReferenceWhenButtonClicked(hideButtonFullId) {
+        let verseNumber = hideButtonFullId.split("-hide")[0]
+        // C.4-5 change the style instead of just logging
+        // console.log("please hide content and reference " + verseNumber)
+        let contentElement = document.getElementById(`${verseNumber}-content`)
+        let referenceElement = document.getElementById(`${verseNumber}-reference`)
+        contentElement.style.visibility = "hidden";
+        referenceElement.style.visibility = "hidden";
+    }
+
+    function toggleVerseContentVisibility(childElement) {
+        // H-4.1 when clicking on the verse content, the visibility is toggled
+        if (childElement.style.visibility === "hidden") {
+            childElement.style.visibility = "visible"
+        } else {
+            childElement.style.visibility = "hidden"
+        }
+    }
+
+    function toggleVerseReferenceVisibility(childElement) {
+        // H-4.2 when clicking on the verse reference, the visibility is toggled
+        if (childElement.style.visibility === "hidden") {
+            childElement.style.visibility = "visible"
+        } else {
+            childElement.style.visibility = "hidden"
+        }}
 </script>
